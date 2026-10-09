@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #fff; padding: 40px; }
+.flowchart { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.node {
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  min-width: 220px;
+}
+.node.start { background: #4CAF50; color: #fff; border-radius: 30px; }
+.node.process { background: #e8f5e9; border: 2px solid #4CAF50; color: #2e7d32; }
+.node.decision {
+  background: #fff3e0; border: 2px solid #FF9800; color: #e65100;
+  border-radius: 50px; min-width: 200px;
+}
+.node.end { background: #9e9e9e; color: #fff; border-radius: 30px; }
+.arrow {
+  width: 2px; height: 28px; background: #999; position: relative;
+}
+.arrow::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent; border-right: 6px solid transparent;
+  border-top: 8px solid #999;
+}
+.arrow-label {
+  position: absolute; left: 16px; top: 8px; font-size: 12px; color: #666; white-space: nowrap;
+}
+.branch-row { display: flex; gap: 60px; align-items: flex-start; }
+.branch { display: flex; flex-direction: column; align-items: center; }
+.branch .arrow { height: 20px; }
+.label { font-size: 13px; color: #666; margin: 4px 0; }
+</style>
+</head>
+<body>
+<div class="flowchart">
+  <div class="node start">开始</div>
+  <div class="arrow"></div>
+  <div class="node process">填写发布表单<br><small>类型 · 标题 · 地点 · 联系方式</small></div>
+  <div class="arrow"></div>
+  <div class="node decision">必填项是否完整？</div>
+  <div class="arrow"></div>
+  <div class="branch-row">
+    <div class="branch">
+      <div class="label">是 ✓</div>
+      <div class="arrow"></div>
+      <div class="node process">生成记录 · 写入 localStorage<br><small>状态 = 进行中</small></div>
+    </div>
+    <div class="branch">
+      <div class="label">否 ✗</div>
+      <div class="arrow"></div>
+      <div class="node process" style="border-color:#f44336;background:#ffebee;color:#c62828">提示补全必填项</div>
+    </div>
+  </div>
+  <div class="arrow"></div>
+  <div class="node process">首页列表展示 · 搜索/筛选可见</div>
+  <div class="arrow"></div>
+  <div class="node decision">有人点击查看详情？</div>
+  <div class="arrow"></div>
+  <div class="node process">查看完整信息 · 一键复制联系方式</div>
+  <div class="arrow"></div>
+  <div class="node decision">发布者标记为已解决？</div>
+  <div class="arrow"></div>
+  <div class="node end">结束（信息灰色置灰，不再展示在活跃列表）</div>
+</div>
+</body>
+</html>

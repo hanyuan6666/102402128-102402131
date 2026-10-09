@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #fff; padding: 40px; }
+.dfd { position: relative; width: 700px; height: 520px; margin: 0 auto; }
+.entity {
+  position: absolute;
+  width: 120px; height: 50px;
+  border: 2px solid #4CAF50; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #2e7d32; background: #e8f5e9;
+  font-weight: 500;
+}
+.process {
+  position: absolute;
+  width: 140px; height: 50px;
+  border: 2px solid #FF9800; border-radius: 25px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: #e65100; background: #fff3e0;
+  text-align: center;
+}
+.data-store {
+  position: absolute;
+  width: 160px; height: 40px;
+  border: 2px solid #9e9e9e; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #555; background: #f5f5f5;
+}
+.arrow { position: absolute; font-size: 11px; color: #666; }
+.label { font-size: 11px; fill: #666; }
+</style>
+</head>
+<body>
+<div class="dfd">
+  <!-- 外部实体：用户 -->
+  <div class="entity" style="left: 20px; top: 230px;">用户</div>
+
+  <!-- 处理过程 -->
+  <div class="process" style="left: 220px; top: 40px;">P1 发布信息</div>
+  <div class="process" style="left: 220px; top: 140px;">P2 搜索/筛选</div>
+  <div class="process" style="left: 220px; top: 240px;">P3 查看详情</div>
+  <div class="process" style="left: 220px; top: 340px;">P4 我的发布管理</div>
+
+  <!-- 数据存储 -->
+  <div class="data-store" style="left: 480px; top: 60px;">D1 本地数据<br>localStorage</div>
+  <div class="data-store" style="left: 480px; top: 340px;">D2 示例数据<br>seedIfEmpty</div>
+
+  <!-- 连线说明用 SVG -->
+  <svg style="position:absolute; top:0; left:0; width:700px; height:520px;" viewBox="0 0 700 520">
+    <!-- 用户 → P1 -->
+    <line x1="140" y1="245" x2="220" y2="65" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="150" y="150" class="label">发布表单</text>
+
+    <!-- 用户 → P2 -->
+    <line x1="140" y1="250" x2="220" y2="165" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="150" y="210" class="label">搜索词/筛选条件</text>
+
+    <!-- 用户 → P3 -->
+    <line x1="140" y1="260" x2="220" y2="265" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="150" y="260" class="label">点击卡片/复制联系方式</text>
+
+    <!-- 用户 → P4 -->
+    <line x1="140" y1="270" x2="220" y2="365" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="150" y="330" class="label">状态更新/删除</text>
+
+    <!-- P1 → D1 -->
+    <line x1="360" y1="65" x2="480" y2="80" stroke="#4CAF50" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="380" y="60" class="label">写入记录</text>
+
+    <!-- P2 → D1 -->
+    <line x1="360" y1="165" x2="480" y2="95" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="390" y="130" class="label">读取记录</text>
+
+    <!-- P3 → D1 -->
+    <line x1="360" y1="265" x2="480" y2="100" stroke="#999" stroke-width="1.5" marker-end="url(#arr)"/>
+
+    <!-- P4 → D1 -->
+    <line x1="360" y1="365" x2="480" y2="110" stroke="#FF9800" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="380" y="280" class="label">更新状态/删除</text>
+
+    <!-- D2 → D1 -->
+    <line x1="480" y1="360" x2="480" y2="100" stroke="#9e9e9e" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr)"/>
+    <text x="490" y="230" class="label">无记录时初始化</text>
+
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="#999"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+</body>
+</html>
